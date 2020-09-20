@@ -1,14 +1,44 @@
 ## Where query
-Filter a CSV file.
+Add a new CSV model class
 
 ```php
 
-Sales::Reader()->where( [
-    ['ItemId', '==', $itemId],
-    ['Date', '%..%', $date]
-] )->get();
+use CSV\CSVModel;
 
-Filter
+class Example extends CSVModel {
+
+/**
+ * an array with the names of the headerColumns
+ * @var array
+ */
+  protected $headerColumns = ['Columnname', 'Price'];
+
+  protected $csvFilePath = __DIR__.'/example.csv';
+
+
+
+}
+
+
+```
+
+### Filter a CSV file.
+
+```php
+Example::Reader()->where('Price','==', 3)->get();
+```
+
+### combine multiple queries
+
+```php
+Example::Reader()
+        ->where([
+            ['Price','==', 3],
+            ['Columnname','==', 'test2']
+        ])->get();
+```
+
+### Possible filter
 * ```==``` is equal
 * ```!=``` is not equal
 * ```%..%``` contains a value 
