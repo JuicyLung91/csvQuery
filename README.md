@@ -1,6 +1,4 @@
-
-
-## Where
+## Where query
 Filter a CSV file.
 
 ```php
